@@ -17,6 +17,7 @@ jobs:
 
         - name: Install dependencies
           run: |
+              python -m pip install jinja2==3.0.3
               python -m pip install nbfancy
               python -m pip install --upgrade nbfancy
 
