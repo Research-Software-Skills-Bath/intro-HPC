@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>00_schedule</title>
+<title>03_1</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,23 +13093,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction-to-Linux-and-High-Performance-Computing">Introduction to Linux and High Performance Computing<a class="anchor-link" href="#Introduction-to-Linux-and-High-Performance-Computing">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following workshop is an introduction to the Linux command line and High Performance Computing, and is a prerequisite for new HPC users before taking the Introduction to Cloud HPC workshop and gaining access to the Nimbus cloud HPC system at the University of Bath.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h2><ul>
-<li>Minimal prerequisites are required for the workshop: basic understanding of the concept of 'files' being stored on a computer in a 'directory'/'folder'. </li>
+<h1 id="An-Example">An Example<a class="anchor-link" href="#An-Example">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+<li><strong>Teaching:</strong> 5 min</li>
+<li><strong>Exercises:</strong> 0 min</li>
+</ul>
+<h2 id="Questions"><strong>Questions</strong><a class="anchor-link" href="#Questions">&#182;</a></h2><ul>
+<li><p><strong>Objectives</strong></p>
+</li>
+<li></li>
+<li></li>
 </ul>
 
 </div>
@@ -13118,98 +13110,36 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Schedule">Schedule<a class="anchor-link" href="#Schedule">&#182;</a></h2><p>Approximate timings for the workshop:</p>
-<h3 id="Session-1:-Intro-to-Linux-and-the-Command-line">Session 1: Intro to Linux and the Command line<a class="anchor-link" href="#Session-1:-Intro-to-Linux-and-the-Command-line">&#182;</a></h3><table>
-<thead><tr>
-<th>Time</th>
-<th>Episode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-:--</td>
-<td><a href="./01_Introduction.html">Introducing the Shell</a></td>
-<td>Introduction to the Shell</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./02_Setup.html">Setup</a></td>
-<td>Setup for the Lesson</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./03_Filesystem.html">The Filesystem</a></td>
-<td>Basic Commands and Navigating the Filesystem</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./04_FilesAndDirectories.html">Files and Directories</a></td>
-<td>Editing Files and Working with Directories</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./05_AdvancedCommands.html">More Advanced Commands</a></td>
-<td>More Advanced Commands</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./06_RepetitiveTasks.html">Repetitive Tasks</a></td>
-<td>Repetitive Tasks</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./07_ShellScripting.html">Shell Scripting</a></td>
-<td>Shell Scripting</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./08_LearningMore.html">Learning More</a></td>
-<td>Learning More</td>
-</tr>
-<tr>
-<td>-:--</td>
-<td><a href="./09_WorkingOnYourOwnMachine">Working on Your Own Machine</a></td>
-<td>Working on your Own Machine</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Session-2:-Intro-to-High-Performance-Computing">Session 2: Intro to High Performance Computing<a class="anchor-link" href="#Session-2:-Intro-to-High-Performance-Computing">&#182;</a></h3><table>
-<thead><tr>
-<th>Time</th>
-<th>Episode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-:--</td>
-<td><a href="./00_setup.html">Setup</a></td>
-<td>Setup for the lesson</td>
-</tr>
-<tr>
-<td>0:05</td>
-<td><a href="./01_episode.html">Accessing the System</a></td>
-<td>Logging onto the system</td>
-</tr>
-</tbody>
-</table>
+<h1 id="Nelle's-Pipeline:-Starting-Point">Nelle's Pipeline: Starting Point<a class="anchor-link" href="#Nelle's-Pipeline:-Starting-Point">&#182;</a></h1><p>Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples in all and now needs to:</p>
+<ol>
+<li>Run each sample through an assay machine that will measure the relative abundance of 300 different proteins. The machine's output for a single sample is a file with one line for each protein.</li>
+<li>Calculate statistics for each of the proteins separately using a program her supervisor wrote called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code>.</li>
+<li>Write up results. Her supervisor would really like her to do this by the end of the month so that her paper can appear in an upcoming special issue of Aquatic Goo Letters.</li>
+</ol>
+<p>It takes about half an hour for the assay machine to process each sample. The good news is that it only takes two minutes to set each one up. Since her lab has eight assay machines that she can use in parallel, this step will "only" take about two weeks.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The bad news is that if she has to run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code> by hand, she'll have to enter filenames and click "OK" 1520 times. At 30 seconds per sample, the whole process will take more than 12 hours (and that's assuming the best-case scenario where she is ready to enter the next file name as soon as the previous sample analysis has finished). This zero-breaks always-ready scenario is only achieveable by a machine so it would likely take much longer than 12 hours, not to mention that the chances of her typing all of those commands correctly are practically zero. Missing that paper deadline is looking increasingly likely.</p>
+<p>The next few lessons will explore what she should do instead. More specifically, they explain how she can use a command shell to automate the repetitive steps in her processing pipeline so that her computer can work 24 hours a day while she writes her paper. As a bonus, once she has put a processing pipeline together, she will be able to use it again whenever she collects more data.</p>
 
-    </div>
 </div>
 </div>
-
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-bar w3-blue-grey">
+<a href="./02_Setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
+<a href="./03_Filesystem.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+</div>
+</div>
+</div>
 </div>
     </div>
   </div>

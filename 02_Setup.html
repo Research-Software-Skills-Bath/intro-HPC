@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>01_intro</title>
+<title>02_Setup</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,28 +13093,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introducing-the-Shell">Introducing the Shell<a class="anchor-link" href="#Introducing-the-Shell">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
+    <h3 id="-Setup%3A-Getting-access-to-the-shell%20"><i class="fa fa-gears"></i> Setup: Getting access to the shell
 </h3>
-    <ul>
+    <h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
 <li><strong>Teaching:</strong> 5 min</li>
 <li><strong>Exercises:</strong> 0 min</li>
 </ul>
 <p><strong>Questions</strong></p>
 <ul>
-<li>What is a command shell and why would I use one?</li>
+<li>How do I access the shell for this workshop?</li>
+<li>How do I access the shell locally on my own machine?</li>
 </ul>
 <p><strong>Objectives</strong></p>
 <ul>
-<li>Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.</li>
-<li>Explain when and why command-line interfaces should be used instead of graphical interfaces.</li>
+<li>Get access to a bash shell on the Reseacrh Software Skills JupyterHub Server.</li>
+<li>Know how to open a terminal to access the shell on your own machine.</li>
 </ul>
 </div>
 </div>
@@ -13123,14 +13117,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>At a high level, computers do four things:</p>
-<ul>
-<li>run programs</li>
-<li>store data</li>
-<li>communicate with each other, and</li>
-<li>interact with us</li>
-</ul>
-<p>They can do the last of these in many different ways, including through a keyboard and mouse, or touch screen interfaces, or speech recognition using systems. While such hardware interfaces are becoming more commonplace, most interaction is still done using screens, mice, touchpads and keyboards.</p>
+<h2 id="Access-the-JupyterHub-Server">Access the JupyterHub Server<a class="anchor-link" href="#Access-the-JupyterHub-Server">&#182;</a></h2><p>For this workshop we will be accessing a shell on a remote server (though we'll also show how to access the shell on your local machine).</p>
+<p>To gain access to the server go to <a href="https://rss.jupyterhub.bath.ac.uk/">https://rss.jupyterhub.bath.ac.uk/</a> in your web browser and log in with your University credentials:</p>
 
 </div>
 </div>
@@ -13138,10 +13126,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We are all familiar with <strong>graphical user interfaces</strong> (GUI): windows, icons and pointers. They are easy to learn and fantastic for simple tasks where a vocabulary consisting of "click" translates easily into "do the thing I want". But this magic relies on wanting a simple set of things, and having programs that can do exactly those things.</p>
-<p>If you wish to do complex, purpose-specific things it helps to have a richer means of expressing your instructions to the computer. It doesn't need to be complicated or difficult, just a vocabulary of commands and a simple grammar for using them.</p>
-<p>This is what the shell provides - a simple language and a <strong>command-line</strong> interface to use it through.</p>
-<p>The heart of a command-line interface is a <strong>read-evaluate-print loop</strong> (REPL) called so because when you type a command and press <Return>. The shell reads it, executes (or "evaluates" it), prints the output, prints the prompt and waits for you to enter another command.</p>
+<p><img src="./images/JupyterHubLogin.png" alt="JupyterHub Login"></p>
 
 </div>
 </div>
@@ -13149,8 +13134,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Shell">The Shell<a class="anchor-link" href="#The-Shell">&#182;</a></h2><p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>. What the user types goes into the shell, which then figures out what commands to run and orders the computer to execute them. (Note that the shell is called “the shell” because it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.)</p>
-<p>A shell is a program like any other. What's special about it is that its job is to run other programs rather than to do calculations itself. The most popular Unix shell is Bash, the Bourne Again SHell (so-called because it's derived from a shell written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows.</p>
+<p>Click on the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Welcome.ipynb</code> link, and then select the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">intro-HPC</code> link:</p>
+<p><img src="./images/Welcome.png" alt="Welcom"></p>
 
 </div>
 </div>
@@ -13158,7 +13143,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Is-it-difficult?">Is it difficult?<a class="anchor-link" href="#Is-it-difficult?">&#182;</a></h2><p>It is a different model of interacting than a GUI, and that will take some effort - and some time - to learn. A GUI presents you with choices and you select one. With a <strong>command line interface</strong> (CLI) the choices are combinations of commands and parameters, more like words in a language than buttons on a screen. They are not presented to you so you must learn a few, like learning some vocabulary in a new language. But a small number of commands gets you a long way, and we'll cover those essential few today.</p>
+<p>This will open up a new notebook - follow the instructions to run the cell, which copies the course material to your home directory (dont worry - we'll explore this command in the workshop).</p>
+<p><img src="./images/course-helper.png" alt="Courses"></p>
 
 </div>
 </div>
@@ -13166,8 +13152,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Flexibility-and-automation">Flexibility and automation<a class="anchor-link" href="#Flexibility-and-automation">&#182;</a></h2><p>The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a <em>script</em>, improving the reproducibility of workflows and allowing you to repeat them easily.</p>
-<p>In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.</p>
+<p>Now we will open up a shell session. In the top right hand corner of the landing page on <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">rss.jupyterhub.bath.ac.uk</code> click the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">New</code> button and select <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">terminal</code>:</p>
+<p><img src="./images/jhub.png" alt="Jhub"></p>
 
 </div>
 </div>
@@ -13175,7 +13161,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This lesson is originally derived from <a href="http://swcarpentry.github.io/shell-novice/">http://swcarpentry.github.io/shell-novice/</a>.  We do not cover one of the lessons on creating your own scripts which is in Episode 6 of the original material.  You are welcome to work through this yourselves however generally we would advise writing analysis scripts such as this in Python or a similar language as this can make for more readable and reusable code.</p>
+<p>A tab should open with the following window:</p>
+<p><img src="./images/jhub-terminal.png" alt="Terminal"></p>
 
 </div>
 </div>
@@ -13183,13 +13170,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nelle's-Pipeline:-Starting-Point">Nelle's Pipeline: Starting Point<a class="anchor-link" href="#Nelle's-Pipeline:-Starting-Point">&#182;</a></h1><p>Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples in all and now needs to:</p>
-<ol>
-<li>Run each sample through an assay machine that will measure the relative abundance of 300 different proteins. The machine's output for a single sample is a file with one line for each protein.</li>
-<li>Calculate statistics for each of the proteins separately using a program her supervisor wrote called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code>.</li>
-<li>Write up results. Her supervisor would really like her to do this by the end of the month so that her paper can appear in an upcoming special issue of Aquatic Goo Letters.</li>
-</ol>
-<p>It takes about half an hour for the assay machine to process each sample. The good news is that it only takes two minutes to set each one up. Since her lab has eight assay machines that she can use in parallel, this step will "only" take about two weeks.</p>
+<p>That's it - we now have a shell open, with a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command line interface</code> (CLI).</p>
+<p>The most popular Unix shell is Bash (the <strong>B</strong>ourne <strong>A</strong>gain <strong>SH</strong>ell — so-called because it’s derived from a shell written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. This is the shell we are using on the server (though there are others)</p>
 
 </div>
 </div>
@@ -13197,8 +13179,19 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The bad news is that if she has to run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code> by hand, she'll have to enter filenames and click "OK" 1520 times. At 30 seconds per sample, the whole process will take more than 12 hours (and that's assuming the best-case scenario where she is ready to enter the next file name as soon as the previous sample analysis has finished). This zero-breaks always-ready scenario is only achieveable by a machine so it would likely take much longer than 12 hours, not to mention that the chances of her typing all of those commands correctly are practically zero. Missing that paper deadline is looking increasingly likely.</p>
-<p>The next few lessons will explore what she should do instead. More specifically, they explain how she can use a command shell to automate the repetitive steps in her processing pipeline so that her computer can work 24 hours a day while she writes her paper. As a bonus, once she has put a processing pipeline together, she will be able to use it again whenever she collects more data.</p>
+<h2 id="Opening-a-shell-on-your-system:">Opening a shell on your system:<a class="anchor-link" href="#Opening-a-shell-on-your-system:">&#182;</a></h2><h3 id="Windows:">Windows:<a class="anchor-link" href="#Windows:">&#182;</a></h3><p>Computers with Windows operating systems do not automatically have a Unix Shell program installed. In this lesson, we encourage you to use an emulator included in <a href="https://carpentries.github.io/workshop-template/#shell">Git for Windows</a>, which gives you access to both Bash shell commands and Git.</p>
+<p>Once installed, you can open a terminal by running the program Git Bash from the Windows start menu.</p>
+<p>For advanced users:</p>
+<p>As an alternative to Git for Windows you may wish to <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Install the Windows Subsystem for Linux</a> which gives access to a Bash shell command-line tool in Windows 10.</p>
+<p>Please note that commands in the Windows Subsystem for Linux (WSL) may differ slightly from those shown in the lesson or presented in the workshop.</p>
+<h3 id="macOS:">macOS:<a class="anchor-link" href="#macOS:">&#182;</a></h3><p>For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default shell is available via the Terminal program within your Utilities folder.</p>
+<p>To open Terminal, try one or both of the following:</p>
+<p>In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it.
+Use the Mac ‘Spotlight’ computer search function. Search for: Terminal and press Return.
+To check if your machine is set up to use something other than Bash, type echo $SHELL in your terminal window.</p>
+<p>If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash.</p>
+<p><a href="http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/">How to Use Terminal on a Mac</a></p>
+<h3 id="Linux:">Linux:<a class="anchor-link" href="#Linux:">&#182;</a></h3><p>The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it is accessible by running the Gnome Terminal or KDE Konsole or xterm, which can be found via the applications menu or the search bar. If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash.</p>
 
 </div>
 </div>
@@ -13210,9 +13203,8 @@ div#notebook {
     <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
 </h3>
     <ul>
-<li>A shell is a program whose primary purpose is to read commands and run other programs.</li>
-<li>The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines.</li>
-<li>The shell's main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.</li>
+<li>You should now have a shell session open in a terminal on the RSS server</li>
+<li>For future reference you should know where to find out information about opening a shell session on your own machine.</li>
 </ul>
 </div>
 </div>
@@ -13222,9 +13214,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
-<a href="./00_schedule.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./01_Introduction.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<a href="./03_1.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>
