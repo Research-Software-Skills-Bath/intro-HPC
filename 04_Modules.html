@@ -13093,22 +13093,140 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Job-Scheduler">Job Scheduler<a class="anchor-link" href="#Job-Scheduler">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
-<li><strong>Teaching:</strong> 30 min</li>
-<li><strong>Exercises:</strong> 30 min</li>
+<h1 id="Modules">Modules<a class="anchor-link" href="#Modules">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+<li><strong>Teaching:</strong> 10 min</li>
+<li><strong>Exercises:</strong> 5 min</li>
 </ul>
 <p><strong>Questions</strong></p>
 <ul>
-<li>What is a scheduler and why are they used?</li>
-<li>How do I launch a program to run on a compute node?</li>
-<li>How do I check limits on the cluster and my accounts?</li>
+<li>How is software managed on a HPC system?</li>
+<li>How do I access the managed software?</li>
 </ul>
 <p><strong>Objectives</strong></p>
 <ul>
-<li>Run a simple job on the cluster's compute nodes.</li>
-<li>Inspect the status of your job.</li>
-<li>Inspect the output and error files of your job.</li>
+<li>Be able to use modules to access software.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="module"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module</code><a class="anchor-link" href="#module">&#182;</a></h2><p>On a high-performance computing system, it is often the case that no software is loaded by default. If we want to use a software package, we will need to “load” it ourselves.</p>
+<p>Before we start using individual software packages, however, we should understand the reasoning behind this approach. The three biggest factors are:</p>
+<ul>
+<li>software incompatibilities;</li>
+<li>versioning;</li>
+<li>dependencies.</li>
+</ul>
+<p>Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) of a software package will break others that depend on it. Two of the most famous examples are Python 2 and 3 and C compiler versions. Python 3 famously provides a python command that conflicts with that provided by Python 2. Software compiled against a newer version of the C libraries and then used when they are not present will result in a nasty 'GLIBCXX_3.4.20' not found error, for instance.</p>
+<p>Software versioning is another common issue. A team might depend on a certain package version for their research project - if the software version was to change (for instance, if a package was updated), it might affect their results. Having access to multiple software versions allow a set of researchers to prevent software versioning issues from affecting their results.</p>
+<p>Dependencies are where a particular software package (or even a particular version) depends on having access to another software package (or even a particular version of another software package). For example, the VASP materials science software may depend on having a particular version of the FFTW (Fastest Fourer Transform in the West) software library available for it to work.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="modules"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">modules</code><a class="anchor-link" href="#modules">&#182;</a></h2><p>Environment modules are the solution to these problems. A module is a self-contained description of a software package - it contains the settings required to run a software packace and, usually, encodes required dependencies on other software packages.</p>
+<p>On most HPC systems there will be software built and managed by the sysadmin team, and typically this will be done with software modules.</p>
+<p>We can interact with the software modules with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module</code> command (again <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man module</code> will give you a full description of the options).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-listing-the-loaded-modules%20"><i class="fa fa-pencil-square-o"></i> listing the loaded modules
+</h3>
+    <p>From the module manual (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man module</code>) find the command to list the currently loaded modules.</p>
+<p><a href="./04_Modules-soln.html#-listing-the-loaded-modules%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Listing-available-modules">Listing available modules<a class="anchor-link" href="#Listing-available-modules">&#182;</a></h2><p>In order to see the modules available we can use the command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$module</span><span class="w"> </span>avail
+---------------------------------------------<span class="w"> </span>/usr/share/Modules/modulefiles<span class="w"> </span>----------------------------------------------
+dot<span class="w">  </span>module-git<span class="w">  </span>module-info<span class="w">  </span>modules<span class="w">  </span>null<span class="w">  </span>use.own
+
+-------------------------------------------------<span class="w"> </span>/usr/share/modulefiles<span class="w"> </span>--------------------------------------------------
+mpi/openmpi-x86_64<span class="w">  </span>pmi/pmix-x86_64
+</pre></div>
+<p>There are minimal modules available on this cluster container (don't worry, Nimbus has <strong>plenty</strong>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Loading-modules">Loading modules<a class="anchor-link" href="#Loading-modules">&#182;</a></h2><p>We can see what a module contains with the follwoing command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>module<span class="w"> </span>whatis<span class="w"> </span>mpi/openmpi-x86_64
+mpi/openmpi-x86_64:<span class="w"> </span>Description:<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>MPI<span class="w"> </span>Project<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>MPI-3<span class="w"> </span>implementation.
+mpi/openmpi-x86_64:<span class="w"> </span>Homepage:<span class="w"> </span>https://www.open-mpi.org/
+mpi/openmpi-x86_64:<span class="w"> </span>URL:<span class="w"> </span>https://www.open-mpi.org/
+</pre></div>
+<p>We see the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpi/openmpi-x86_64</code> module conatins the OpenMPI implementation of the Message Passing Interface (MPI) standard, with the libraries and mpi compiler wrappers, such as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpif90</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpicc</code>.</p>
+<p>To see the effect of loading the module lets first use the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">which</code> command to see if it can find the mpi fortran compiler <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpif90</code>:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$which</span><span class="w"> </span>mpif90
+/usr/bin/which:<span class="w"> </span>no<span class="w"> </span>mpif90<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">(</span>/data/jupyter-user/.local/bin:/data/jupyter-user/bin:/usr/share/Modules/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin<span class="o">)</span>
+</pre></div>
+<p>We can see <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">which</code> has looked in all the standard places in our <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$PATH</code> and has been unable to find the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpif90</code> compiler.</p>
+<p>Now lets load the module and try again:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$module</span><span class="w"> </span>load<span class="w"> </span>mpi/openmpi-x86_64
+jupyter-user:<span class="nv">$which</span><span class="w"> </span>mpif90
+/usr/lib64/openmpi/bin/mpif90
+</pre></div>
+<p>Now we can see <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">which</code> can find the wrapper without any issues. Loading the module has updated our environment so that the location of the compiler (and the dependencies) is included in the paths searched.</p>
+<p>If we issue the command</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</pre></div>
+<p>We can now see the directory paths being searched - we can see, by comapring to our error message above, that <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/usr/lib64/openmpi/bin</code> has been added.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Unloading-modules">Unloading modules<a class="anchor-link" href="#Unloading-modules">&#182;</a></h2><p>In order to remove a module we can issue the command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>mpi/openmpi-x86_64
+</pre></div>
+<p>Try this now and inspect the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$PATH</code> environment variable with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">echo</code> command again. We can see the path containg the openMPI binaries has been removed.</p>
+<p>If we wished to remove all loaded modules we could issue the command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$module</span><span class="w"> </span>purge
+</pre></div>
+<p>This is useful if there are lots of dependencies for a particular piece of software also stored in modules (which is typically the case on Nimbus). This way you don't have to type every module out in an <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module unload</code> statement before loading a new piece of software, just purge them all and do a fresh <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load</code> on the new software.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Points">Key Points<a class="anchor-link" href="#Key-Points">&#182;</a></h2><ul>
+<li>List loaded software with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module list</code></li>
+<li>See what modules are available with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load</code></li>
+<li>Load software with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load softwareName</code></li>
+<li>Unload modules with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module unload &lt;name&gt;</code></li>
+<li>Purge all modules with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module purge</code></li>
+<li>The module system handles software versioning and package conflicts for you automatically.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
