@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>03_Filesystem-soln</title>
+<title>02_introHPC</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,19 +13093,87 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
+<h1 id="Introducing-High-Performance-Computing">Introducing High Performance Computing<a class="anchor-link" href="#Introducing-High-Performance-Computing">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-command-doesn%27t-exist%20"><i class="fa fa-eye"></i> command doesn't exist
+<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
+    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
 </h3>
-    <p>The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoareyou</code> command doesn't exist - i.e. there is no program on the system with that name. The shell returns an information message telling you as much:</p>
-<p><img src="./images/whoareyou.png" alt="whoaareyou"></p>
-<p>Followed by the command prompt ready for the next command.</p>
+    <ul>
+<li><strong>Teaching:</strong> 5 min</li>
+<li><strong>Exercises:</strong> 0 min</li>
+</ul>
+<p><strong>Questions</strong></p>
+<ul>
+<li>Why would I be interested in High Performance Computing (HPC)?</li>
+<li>What can I expect to learn from this course?</li>
+</ul>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Understand that HPC is a collection of computing resourcesto deliver higher performance than a single machine.</li>
+<li>Understand tha HPC can help you run your calculations more effieciently and more reliably.</li>
+<li>Identify how an HPC system could benefit you.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="What-is-HPC-and-why-is-it-different-to-using-your-desktop?">What is HPC and why is it different to using your desktop?<a class="anchor-link" href="#What-is-HPC-and-why-is-it-different-to-using-your-desktop?">&#182;</a></h3><p>“High Performance Computing most generally refers to the practice of aggregating computing power in a way that delivers much higher performance than one could get out of a typical desktop computer or workstation in order to solve large problems in science, engineering, or business.” - insideHPC</p>
+<p><img src="./images/02/balena-lights.jpg" alt="Balena"></p>
+<p>Lets consider seeveral research scenarios:</p>
+<ul>
+<li>A statistics student wants to cross-validate a model. This involves running the model 1000 times – but each run takes an hour. Running the model on a laptop will take over a month! In this research problem, final results are calculated after all 1000 models have run, but typically only one model is run at a time (in serial) on the laptop. Since each of the 1000 runs is independent of all others, and given enough computers, it’s theoretically possible to run them all at once (in parallel).</li>
+<li>A genomics researcher has been using small datasets of sequence data, but soon will be receiving a new type of sequencing data that is 10 times as large. It’s already challenging to open the datasets on a computer – analyzing these larger datasets will probably crash it. In this research problem, the calculations required might be impossible to parallelize, but a computer with more memory would be required to analyze the much larger future data set.</li>
+<li>An engineer is using a fluid dynamics package that has an option to run in parallel. So far, this option was not used on a desktop. In going from 2D to 3D simulations, the simulation time has more than tripled. It might be useful to take advantage of that option or feature. In this research problem, the calculations in each region of the simulation are largely independent of calculations in other regions of the simulation. It’s possible to run each region’s calculations simultaneously (in parallel), communicate selected results to adjacent regions as needed, and repeat the calculations to converge on a final set of results. In moving from a 2D to a 3D model, both the amount of data and the amount of calculations increases greatly, and it’s theoretically possible to distribute the calculations across multiple computers communicating over a shared network.</li>
+</ul>
+<p>In all these cases, access to more (and larger) computers is needed. Those computers should be usable at the same time, solving many researchers’ problems in parallel.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PC-vs-HPC">PC vs HPC<a class="anchor-link" href="#PC-vs-HPC">&#182;</a></h3><p>Your PC is your local computing resource, good for small computational tasks. It is flexible, easy to set-up and configure for new tasks, though it has limited computational resources.</p>
+<p><img src="./images/02/pc.webp" alt="Balena"></p>
+<p>A HPC system is typically described as a cluster - as it is made up of a <strong><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cluster</code></strong> of computers, or compute nodes. Each individual compute node is typically a lot more powerful than any PC  - i.e. more memory, many more and faster CPU cores.</p>
+<p><img src="./images/02/compute_cluster.png" alt="Cluster"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
+    <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
+</h3>
+    <p>-</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-bar w3-blue-grey">
+<a href="./01_getting_setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
+<a href="./03_Scheduler.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>

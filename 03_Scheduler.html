@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>03_1</title>
+<title>03_Scheduler</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,15 +13093,21 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="An-Example">An Example<a class="anchor-link" href="#An-Example">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
-<li><strong>Teaching:</strong> 5 min</li>
-<li><strong>Exercises:</strong> 0 min</li>
+<h1 id="Job-Scheduler">Job Scheduler<a class="anchor-link" href="#Job-Scheduler">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+<li><strong>Teaching:</strong> 30 min</li>
+<li><strong>Exercises:</strong> 30 min</li>
 </ul>
-<h2 id="Questions"><strong>Questions</strong><a class="anchor-link" href="#Questions">&#182;</a></h2><ul>
-<li><p><strong>Objectives</strong></p>
-</li>
-<li></li>
-<li></li>
+<p><strong>Questions</strong></p>
+<ul>
+<li>What is a scheduler and why are they used?</li>
+<li>How do I launch a program to run on a compute node?</li>
+<li>How do I check limits on the cluster and my accounts?</li>
+</ul>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Run a simple job on the cluster's compute nodes.</li>
+<li>Inspect the status of your job.</li>
+<li>Inspect the output and error files of your job.</li>
 </ul>
 
 </div>
@@ -13110,13 +13116,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nelle's-Pipeline:-Starting-Point">Nelle's Pipeline: Starting Point<a class="anchor-link" href="#Nelle's-Pipeline:-Starting-Point">&#182;</a></h1><p>Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples in all and now needs to:</p>
-<ol>
-<li>Run each sample through an assay machine that will measure the relative abundance of 300 different proteins. The machine's output for a single sample is a file with one line for each protein.</li>
-<li>Calculate statistics for each of the proteins separately using a program her supervisor wrote called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code>.</li>
-<li>Write up results. Her supervisor would really like her to do this by the end of the month so that her paper can appear in an upcoming special issue of Aquatic Goo Letters.</li>
-</ol>
-<p>It takes about half an hour for the assay machine to process each sample. The good news is that it only takes two minutes to set each one up. Since her lab has eight assay machines that she can use in parallel, this step will "only" take about two weeks.</p>
+<h1 id="Job-Scheduling">Job Scheduling<a class="anchor-link" href="#Job-Scheduling">&#182;</a></h1><p>An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs run where and when.</p>
+<p>The following illustration compares these tasks of a job scheduler to a waiter in a restaurant. If you can relate to an instance where you had to wait for a while in a queue to get in to a popular restaurant, then you may now understand why sometimes your jobs do not start instantly as in your laptop.</p>
+<p><img src="./images/03/restaurant_queue_manager.svg" alt="Scheduler"></p>
 
 </div>
 </div>
@@ -13124,8 +13126,183 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The bad news is that if she has to run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">goostats</code> by hand, she'll have to enter filenames and click "OK" 1520 times. At 30 seconds per sample, the whole process will take more than 12 hours (and that's assuming the best-case scenario where she is ready to enter the next file name as soon as the previous sample analysis has finished). This zero-breaks always-ready scenario is only achieveable by a machine so it would likely take much longer than 12 hours, not to mention that the chances of her typing all of those commands correctly are practically zero. Missing that paper deadline is looking increasingly likely.</p>
-<p>The next few lessons will explore what she should do instead. More specifically, they explain how she can use a command shell to automate the repetitive steps in her processing pipeline so that her computer can work 24 hours a day while she writes her paper. As a bonus, once she has put a processing pipeline together, she will be able to use it again whenever she collects more data.</p>
+<h3 id="Slurm:-Simple-Linux-Utility-for-Resource-Managment">Slurm: Simple Linux Utility for Resource Managment<a class="anchor-link" href="#Slurm:-Simple-Linux-Utility-for-Resource-Managment">&#182;</a></h3><p>Interacting with the scheduler is done through the terminal using an array of commands. If multiple jobs ran on a single node at the same time users would be competing for the same resources and jobs take longer to run overall. A scheduler manages individual jobs, which are allocated to the resources they need as they become available. This results in a higher overall throughput and more consistent performance.</p>
+<p>The scheduler on our cluster container (and Nimbus) is <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">slurm</code>: _<strong>S</strong><em>imple </em><strong>L</strong><em>inux </em><strong>U</strong><em>tility for </em><strong>R</strong><em>esource </em><strong>M</strong>_anagment.</p>
+<p>Interacting with the scheduler is done through the terminal using an array of commands.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Run-a-bash-job%20"><i class="fa fa-pencil-square-o"></i> Run a bash job
+</h3>
+    <p>Using the text editor in the terminal create a bash script called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">test_job.sh</code> with the following:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;This script is running on:&#39;</span>
+hostname
+sleep<span class="w"> </span><span class="m">60</span>
+</pre></div>
+<p>And run it.</p>
+<p>Where did the script run?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-sbatch%20"><i class="fa fa-pencil-square-o"></i> sbatch
+</h3>
+    <p>If you completed the previous challenge successfully, you probably realise that there is a distinction between running the job through the scheduler and just “running it”. To submit this job to the scheduler, we use a command to submit the job to slurm:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>sbatch<span class="w"> </span>test_job.sh
+</pre></div>
+<p>Try this now. What happens?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When submitting a job you typically have to give the scheduler, slurm, information in order to help it decide where and when to run the job.</p>
+<p>If there are lots of different compute nodes, for example, we might want to make sure our job goes on a particular CPU. And we will have to tell <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">slurm</code> how long our job will run for so it can make decisions about where to put jobs.</p>
+<p>So lets have a look at a more complete job script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=prj0_phase1</span>
+<span class="c1">#SBATCH --job-name=myjob</span>
+<span class="c1">#SBATCH --partition=shortJob</span>
+<span class="c1">#SBATCH --qos=shortJob</span>
+<span class="c1">#SBATCH --time=0-00:25:00</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;This script is running on:&#39;</span>
+hostname
+sleep<span class="w"> </span><span class="m">60</span>
+</pre></div>
+<p>Every line that starts with a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH</code> is a directive for <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">slurm</code> this is where we tell slurm the resources we want for our job.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --account=</code> tells slurm what account you wish to run against. Slurm will select a default account, but it is better practice to make sure you include this. (In order to run a job on Nimbus you need to have a resource allocation, with funds, and it is this code that you put here)</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --job-name=</code> gives the job a name, which you can identify in the queue - you can call the job whatever you want that helps you to identify it.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --partition=</code> tells slurm what partition to put the job on. Typically a HPC system will have different partitions which will have different resources or limits on them. For example, there may be a partion with a particular CPU type, or one with limits on the size or duration of job you can run.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --qos=</code> tells slurm what Quality of Service you wish to run with. The QOS is simply a way for admins to apply rules to the resources you can access, and the priority of the job. For Bath's HPC systems the qos will match the partition name - and <strong>remember</strong> if you don't include it you will get an error.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --time=</code> tells slurm how long you wish to run the job for, with several acceptable formats:  "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds" e.g. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">1-01:20:00</code> will request a runtime of 25 hours and 20 mins.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Running-a-batch-job%20"><i class="fa fa-pencil-square-o"></i> Running a batch job
+</h3>
+    <p>Try editing your runscript to match the example above and submit it.</p>
+<p>What happens?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="sinfo">sinfo<a class="anchor-link" href="#sinfo">&#182;</a></h2><p>We get an error above because the time limit on the partition has been exceeded. We can use a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">slurm</code> command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sinfo</code> to get information about what partitions are available:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sinfo</span>
+PARTITION<span class="w">      </span>AVAIL<span class="w">  </span>TIMELIMIT<span class="w">  </span>NODES<span class="w">  </span>STATE<span class="w"> </span>NODELIST
+PARTITION<span class="w">     </span>AVAIL<span class="w">  </span>TIMELIMIT<span class="w">  </span>NODES<span class="w">  </span>STATE<span class="w"> </span>NODELIST
+bigJob<span class="w">           </span>up<span class="w"> </span><span class="m">1</span>-00:00:00<span class="w">      </span><span class="m">4</span><span class="w">   </span>idle<span class="w"> </span>c<span class="o">[</span><span class="m">1</span>-4<span class="o">]</span>
+shortJob<span class="w">         </span>up<span class="w">      </span><span class="m">15</span>:00<span class="w">      </span><span class="m">4</span><span class="w">   </span>idle<span class="w"> </span>c<span class="o">[</span><span class="m">1</span>-4<span class="o">]</span>
+notallowedjob<span class="w">    </span>up<span class="w">      </span><span class="m">15</span>:00<span class="w">      </span><span class="m">4</span><span class="w">   </span>idle<span class="w"> </span>c<span class="o">[</span><span class="m">1</span>-4<span class="o">]</span>
+</pre></div>
+<p>We can see there are three different partitions. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">bigJob</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shortJob</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">notallowedjob</code>. All are available (we can see up in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">AVAIL</code> column), next we can see the time limit on jobs allowed to run un that partition.</p>
+<p>Now we can see why our job was rejected - we requested a 25 minute runtime on the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shortjob</code> partition, when the timelimit is only 15 minutes. 
+Try reducing the time requested in the runscript and resubmitting.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="sacctmgr">sacctmgr<a class="anchor-link" href="#sacctmgr">&#182;</a></h2><p>Yet another error:</p>
+<div class="highlight"><pre><span></span>sbatch:<span class="w"> </span>error:<span class="w"> </span>Batch<span class="w"> </span>job<span class="w"> </span>submission<span class="w"> </span>failed:<span class="w"> </span>Invalid<span class="w"> </span>account<span class="w"> </span>or<span class="w"> </span>account/partition<span class="w"> </span>combination<span class="w"> </span>specified
+</pre></div>
+<p>So we need to check what accounts and QOS we have access to. We can do that with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sacctmgr</code> command:</p>
+
+<pre><code style="">sacctmgr show associations user=jupyter-user --parsable2 format=account,user</code></pre>
+<p>This shows the associations between the QOS and our user account, output only what we are interested in (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">format=account,user,QOS</code>) in a readbale format (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--parsable2</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-adding-the-account%20"><i class="fa fa-pencil-square-o"></i> adding the account
+</h3>
+    <p>Using the sacctmgr command take note of the account you have access to and update your submission script, and resunbmit it using the sbatch command.</p>
+<p>Where was the script executed? Have any new files been created?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Redirecting-output">Redirecting output<a class="anchor-link" href="#Redirecting-output">&#182;</a></h2><p>We have seen that a new file was created in our successful submission <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">slurm-&lt;jobid&gt;.out</code> we can tailor where our output goes with a couple of slurm directives:</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --output=</code> will tell where to put the output</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --error=</code> will tell slurm where to send any error messages</p>
+<p>We can also incorporate the job name with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">%x</code> and the job id with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">%j</code> to help identify our output files and ensure they arent overwritten:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Redirecting-output%20"><i class="fa fa-pencil-square-o"></i> Redirecting output
+</h3>
+    <p>Include the following in your run script and resubmit.</p>
+<div class="highlight"><pre><span></span><span class="c1">#SBATCH --output=%x.%j.o</span>
+<span class="c1">#SBATCH --error=%x.%j.e</span>
+</pre></div>
+<p>What happens to your output now?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=prj0_phase1</span>
+<span class="c1">#SBATCH --job-name=JOB_NAME</span>
+<span class="c1">#SBATCH --output=%x.%j.o</span>
+<span class="c1">#SBATCH --error=%x.%j.e</span>
+<span class="c1">#SBATCH --nodes=4</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --partition=bigJob</span>
+<span class="c1">#SBATCH --qos=bigjob</span>
+<span class="c1">#SBATCH --time=04:00:00</span>
+
+module<span class="w"> </span>load<span class="w"> </span>mpi/openmpi-x86_64
+<span class="nb">echo</span><span class="w"> </span>hello
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>hello_mpi
+sleep<span class="w"> </span><span class="m">10</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
@@ -13134,9 +13311,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
-<a href="./02_Setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./02_introHPC.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./03_Filesystem.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<a href="./04_Modules.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>

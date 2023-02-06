@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>00_schedule</title>
+<title>05_running_a_parallel_job</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,23 +13093,21 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction-High-Performance-Computing">Introduction High Performance Computing<a class="anchor-link" href="#Introduction-High-Performance-Computing">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following workshop is an introduction to High Performance Computing, and is a prerequisite for new HPC users before taking the Introduction to Cloud HPC workshop and gaining access to the Nimbus cloud HPC system at the University of Bath.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h2><ul>
-<li>You should have completed the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Introduction to the Shell</code> workshop. </li>
+<h1 id="Job-Scheduler">Job Scheduler<a class="anchor-link" href="#Job-Scheduler">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+<li><strong>Teaching:</strong> 30 min</li>
+<li><strong>Exercises:</strong> 30 min</li>
+</ul>
+<p><strong>Questions</strong></p>
+<ul>
+<li>What is a scheduler and why are they used?</li>
+<li>How do I launch a program to run on a compute node?</li>
+<li>How do I check limits on the cluster and my accounts?</li>
+</ul>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Run a simple job on the cluster's compute nodes.</li>
+<li>Inspect the status of your job.</li>
+<li>Inspect the output and error files of your job.</li>
 </ul>
 
 </div>
@@ -13118,58 +13116,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Schedule">Schedule<a class="anchor-link" href="#Schedule">&#182;</a></h2><p>Approximate timings for the workshop:</p>
-<h3 id="Session-2:-Intro-to-High-Performance-Computing">Session 2: Intro to High Performance Computing<a class="anchor-link" href="#Session-2:-Intro-to-High-Performance-Computing">&#182;</a></h3><table>
-<thead><tr>
-<th>Time</th>
-<th>Episode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0:00</td>
-<td><a href="./01_getting_setup.html">Setup</a></td>
-<td>Setup for the lesson</td>
-</tr>
-<tr>
-<td>0:05</td>
-<td><a href="./02_introHPC.html">Introducing HPC</a></td>
-<td>Introducing HPC</td>
-</tr>
-<tr>
-<td>0:15</td>
-<td><a href="./03_Scheduler.html">Job Scheduler</a></td>
-<td>The Job Scheduler</td>
-</tr>
-<tr>
-<td>0:55</td>
-<td><a href="./04_Modules.html">Software Modules</a></td>
-<td>Software Modules</td>
-</tr>
-<tr>
-<td>1:10</td>
-<td><a href="./05_running_a_parallel_job.html">RUnning a parallel Job</a></td>
-<td>Running a Parallel Job</td>
-</tr>
-</tbody>
-</table>
-
+<div class="w3-bar w3-blue-grey">
+<a href="./04_Modules.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
+<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>02_Setup</title>
+<title>01_getting_setup</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,22 +13093,31 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Getting-Set-Up">Getting Set-Up<a class="anchor-link" href="#Getting-Set-Up">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Setup%3A-Getting-access-to-the-shell%20"><i class="fa fa-gears"></i> Setup: Getting access to the shell
+    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
 </h3>
-    <h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+    <ul>
 <li><strong>Teaching:</strong> 5 min</li>
 <li><strong>Exercises:</strong> 0 min</li>
 </ul>
 <p><strong>Questions</strong></p>
 <ul>
-<li>How do I access the shell for this workshop?</li>
-<li>How do I access the shell locally on my own machine?</li>
+<li>Where can I run the shell?</li>
+<li>What are Jupyterhub and notebooks?</li>
 </ul>
 <p><strong>Objectives</strong></p>
 <ul>
-<li>Get access to a bash shell on the Reseacrh Software Skills JupyterHub Server.</li>
-<li>Know how to open a terminal to access the shell on your own machine.</li>
+<li>Log onto the JupyterHub Server for the lesson</li>
+<li>Open a terminal on the Server</li>
+<li>Copy the files necessary for this lesson</li>
+<li>COnnect to the cluster container</li>
 </ul>
 </div>
 </div>
@@ -13117,8 +13126,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Access-the-JupyterHub-Server">Access the JupyterHub Server<a class="anchor-link" href="#Access-the-JupyterHub-Server">&#182;</a></h2><p>For this workshop we will be accessing a shell on a remote server (though we'll also show how to access the shell on your local machine).</p>
-<p>To gain access to the server go to <a href="https://rss.jupyterhub.bath.ac.uk/">https://rss.jupyterhub.bath.ac.uk/</a> in your web browser and log in with your University credentials:</p>
+<p>This episode details how to get started on the Jupyterhub Server (normally used for notebooks) and accessing the terminal and a container mimicking a cluster. This service runs a common Linux operating system with similar appearance to that found on MacOs and HPC services. You can access this service from any PC or laptop by in your web browser.</p>
 
 </div>
 </div>
@@ -13126,7 +13134,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="./images/JupyterHubLogin.png" alt="JupyterHub Login"></p>
+<h2 id="Getting-Started">Getting Started<a class="anchor-link" href="#Getting-Started">&#182;</a></h2><p>First we need to log-on to the server: <a href="https://astro.jupyterhub.bath.ac.uk">https://astro.jupyterhub.bath.ac.uk</a>, you should be redirected to use your University account via the Microsoft web login.  This should start a jupyterhub service running on the server and return you to a page that looks like:</p>
+<p><img src="./images/01/jhub.png" alt="Create new notebook"></p>
 
 </div>
 </div>
@@ -13134,8 +13143,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Click on the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Welcome.ipynb</code> link, and then select the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">intro-HPC</code> link:</p>
-<p><img src="./images/Welcome.png" alt="Welcom"></p>
+<p>You should have a number of files in your home folder.  Click on <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Welcome.ipynb</code> to find out more about this service.  Click on the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Intro to HPC</code> link and follow the instructions to set up material for this course.</p>
 
 </div>
 </div>
@@ -13143,8 +13151,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This will open up a new notebook - follow the instructions to run the cell, which copies the course material to your home directory (dont worry - we'll explore this command in the workshop).</p>
-<p><img src="./images/course-helper.png" alt="Courses"></p>
+<h2 id="Opening-a-Terminal">Opening a Terminal<a class="anchor-link" href="#Opening-a-Terminal">&#182;</a></h2><p>From the JupyterHub server homepage click the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">New</code> dropdown button and select <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Terminal</code>. 
+<img src="./images/01/jhub_terminal.png" alt="Open new terminal"></p>
 
 </div>
 </div>
@@ -13152,8 +13160,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we will open up a shell session. In the top right hand corner of the landing page on <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">rss.jupyterhub.bath.ac.uk</code> click the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">New</code> button and select <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">terminal</code>:</p>
-<p><img src="./images/jhub.png" alt="Jhub"></p>
+<p>This should open a terminal session in a fresh window for you:</p>
+<p><img src="./images/01/terminal.png" alt="New terminal"></p>
 
 </div>
 </div>
@@ -13161,37 +13169,11 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A tab should open with the following window:</p>
-<p><img src="./images/jhub-terminal.png" alt="Terminal"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>That's it - we now have a shell open, with a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command line interface</code> (CLI).</p>
-<p>The most popular Unix shell is Bash (the <strong>B</strong>ourne <strong>A</strong>gain <strong>SH</strong>ell — so-called because it’s derived from a shell written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. This is the shell we are using on the server (though there are others)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Opening-a-shell-on-your-system:">Opening a shell on your system:<a class="anchor-link" href="#Opening-a-shell-on-your-system:">&#182;</a></h2><h3 id="Windows:">Windows:<a class="anchor-link" href="#Windows:">&#182;</a></h3><p>Computers with Windows operating systems do not automatically have a Unix Shell program installed. In this lesson, we encourage you to use an emulator included in <a href="https://carpentries.github.io/workshop-template/#shell">Git for Windows</a>, which gives you access to both Bash shell commands and Git.</p>
-<p>Once installed, you can open a terminal by running the program Git Bash from the Windows start menu.</p>
-<p>For advanced users:</p>
-<p>As an alternative to Git for Windows you may wish to <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Install the Windows Subsystem for Linux</a> which gives access to a Bash shell command-line tool in Windows 10.</p>
-<p>Please note that commands in the Windows Subsystem for Linux (WSL) may differ slightly from those shown in the lesson or presented in the workshop.</p>
-<h3 id="macOS:">macOS:<a class="anchor-link" href="#macOS:">&#182;</a></h3><p>For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default shell is available via the Terminal program within your Utilities folder.</p>
-<p>To open Terminal, try one or both of the following:</p>
-<p>In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it.
-Use the Mac ‘Spotlight’ computer search function. Search for: Terminal and press Return.
-To check if your machine is set up to use something other than Bash, type echo $SHELL in your terminal window.</p>
-<p>If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash.</p>
-<p><a href="http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/">How to Use Terminal on a Mac</a></p>
-<h3 id="Linux:">Linux:<a class="anchor-link" href="#Linux:">&#182;</a></h3><p>The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it is accessible by running the Gnome Terminal or KDE Konsole or xterm, which can be found via the applications menu or the search bar. If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash.</p>
+<h2 id="Connect-to-the-Cluster-Container">Connect to the Cluster Container<a class="anchor-link" href="#Connect-to-the-Cluster-Container">&#182;</a></h2><p>For the purposes of this workshop we will be using a container set-up to mimick a HPC cluster, to get you comfortable with the environment, before later actually accessing Nimbus.</p>
+<p>In order to connect to the container from the terminal in Jupyterhub issue the command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$connect_cluster</span>
+</pre></div>
+<p>You will see that your home directory on the container is <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/data/jupyter-user/</code></p>
 
 </div>
 </div>
@@ -13203,8 +13185,7 @@ To check if your machine is set up to use something other than Bash, type echo $
     <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
 </h3>
     <ul>
-<li>You should now have a shell session open in a terminal on the RSS server</li>
-<li>For future reference you should know where to find out information about opening a shell session on your own machine.</li>
+<li>You should now be logged into the JupyterHub server, with a terminal open and have connected to the cluster conatiner. </li>
 </ul>
 </div>
 </div>
@@ -13213,10 +13194,17 @@ To check if your machine is set up to use something other than Bash, type echo $
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
-<a href="./01_Introduction.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./00_schedule.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./03_1.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<a href="./02_introHPC.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>

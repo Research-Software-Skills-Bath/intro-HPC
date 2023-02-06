@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>01_Introduction</title>
+<title>04_Modules</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,119 +13093,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introducing-the-Portal">Introducing the Portal<a class="anchor-link" href="#Introducing-the-Portal">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
-</h3>
-    <ul>
-<li><strong>Teaching:</strong> 5 min</li>
-<li><strong>Exercises:</strong> 0 min</li>
+<h1 id="Job-Scheduler">Job Scheduler<a class="anchor-link" href="#Job-Scheduler">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
+<li><strong>Teaching:</strong> 30 min</li>
+<li><strong>Exercises:</strong> 30 min</li>
 </ul>
 <p><strong>Questions</strong></p>
 <ul>
-<li>What is the Research Computing Finance Portal?</li>
+<li>What is a scheduler and why are they used?</li>
+<li>How do I launch a program to run on a compute node?</li>
+<li>How do I check limits on the cluster and my accounts?</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-is-the-Research-Computing-Finance-Portal?">What is the Research Computing Finance Portal?<a class="anchor-link" href="#What-is-the-Research-Computing-Finance-Portal?">&#182;</a></h2><p>The Research Computing Portal allows users to manage their research computing resources and finance.</p>
-<p>The portal allows users to:</p>
+<p><strong>Objectives</strong></p>
 <ul>
-<li>create and manage accounts, membership, and resources</li>
-<li>view job transactions, storage consumption, budgets, and expenditure.</li>
+<li>Run a simple job on the cluster's compute nodes.</li>
+<li>Inspect the status of your job.</li>
+<li>Inspect the output and error files of your job.</li>
 </ul>
-<p>You will need to use the Research Computing Portal if you need to:</p>
-<ul>
-<li>Set up and configure an account to use research computing resources such as Nimbus and Anatra.</li>
-<li>Monitor the budget commitment and expenditure associated with a Research Computing account.</li>
-<li>Monitor computing and storage transactions.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Logging-in%20"><i class="fa fa-pencil-square-o"></i> Logging in
-</h3>
-    <p>Open a web browser and navigate to <a href="https://rcam.bath.ac.uk">https://rcam.bath.ac.uk</a> and log in with your University credentials.</p>
-<p><a href="./images/ResearchFinancePortal.png">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="./images/ResearchFinancePortal.png" alt="Research Finance Portal"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Shell">The Shell<a class="anchor-link" href="#The-Shell">&#182;</a></h2><p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>. What the user types goes into the shell, which then figures out what commands to run and orders the computer to execute them. (Note that the shell is called “the shell” because it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.)</p>
-<p>A shell is a program like any other. What's special about it is that its job is to run other programs rather than to do calculations itself.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Is-it-difficult?">Is it difficult?<a class="anchor-link" href="#Is-it-difficult?">&#182;</a></h2><p>It is a different model of interacting than a GUI, and that will take some effort - and some time - to learn. A GUI presents you with choices and you select one. With a <strong>command line interface</strong> (CLI) the choices are combinations of commands and parameters, more like words in a language than buttons on a screen. They are not presented to you so you must learn a few, like learning some vocabulary in a new language. But a small number of commands gets you a long way, and we'll cover those essential few today.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Flexibility-and-automation">Flexibility and automation<a class="anchor-link" href="#Flexibility-and-automation">&#182;</a></h2><p>The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a <em>script</em>, improving the reproducibility of workflows and allowing you to repeat them easily.</p>
-<p>In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This lesson is derived from <a href="http://swcarpentry.github.io/shell-novice/">the Software Carpentries</a> lesson.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
-</h3>
-    <ul>
-<li>A shell is a program whose primary purpose is to read commands and run other programs.</li>
-<li>The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines.</li>
-<li>The shell's main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
@@ -13214,9 +13117,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
-<a href="./00_schedule.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./03_Scheduler.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./02_Setup.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<a href="./05_running_a_parallel_job.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>
