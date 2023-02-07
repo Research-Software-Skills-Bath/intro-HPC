@@ -13129,25 +13129,24 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Hello-world">Hello world<a class="anchor-link" href="#Hello-world">&#182;</a></h3><p>Below is a simple parallel implementation of the hello world program written in fortran.</p>
+<div class="highlight"><pre><span></span><span class="k">PROGRAM </span><span class="n">hello_world_mpi</span>
+<span class="k">include</span><span class="w"> </span><span class="s1">&#39;mpif.h&#39;</span>
 
-<pre><code style="">Fortran90
-PROGRAM hello_world_mpi
-include 'mpif.h'
+<span class="kt">integer </span><span class="n">process_Rank</span><span class="p">,</span><span class="w"> </span><span class="n">size_Of_Cluster</span><span class="p">,</span><span class="w"> </span><span class="n">ierror</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">resultlen</span>
 
-integer process_Rank, size_Of_Cluster, ierror, tag ,status,resultlen
-
-character*(MPI_MAX_PROCESSOR_NAME) name
+<span class="kt">character</span><span class="o">*</span><span class="p">(</span><span class="n">MPI_MAX_PROCESSOR_NAME</span><span class="p">)</span><span class="w"> </span><span class="n">name</span>
 
 
-call MPI_INIT(ierror)
-call MPI_COMM_SIZE(MPI_COMM_WORLD, size_Of_Cluster, ierror)
-call MPI_COMM_RANK(MPI_COMM_WORLD, process_Rank, ierror)
-call MPI_GET_PROCESSOR_NAME(name, resultlen, ierror)
+<span class="k">call </span><span class="n">MPI_INIT</span><span class="p">(</span><span class="n">ierror</span><span class="p">)</span>
+<span class="k">call </span><span class="n">MPI_COMM_SIZE</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">size_Of_Cluster</span><span class="p">,</span><span class="w"> </span><span class="n">ierror</span><span class="p">)</span>
+<span class="k">call </span><span class="n">MPI_COMM_RANK</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">process_Rank</span><span class="p">,</span><span class="w"> </span><span class="n">ierror</span><span class="p">)</span>
+<span class="k">call </span><span class="n">MPI_GET_PROCESSOR_NAME</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">resultlen</span><span class="p">,</span><span class="w"> </span><span class="n">ierror</span><span class="p">)</span>
 
-print *, 'Hello World from process: ',TRIM(name), process_Rank, 'of ', size_Of_Cluster
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello World from process: &#39;</span><span class="p">,</span><span class="nb">TRIM</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">process_Rank</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;of &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">size_Of_Cluster</span>
 
-call MPI_FINALIZE(ierror)
-END PROGRAM</code></pre>
+<span class="k">call </span><span class="n">MPI_FINALIZE</span><span class="p">(</span><span class="n">ierror</span><span class="p">)</span>
+<span class="k">END PROGRAM</span>
+</pre></div>
 <p>Create a new file named <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">hello_world_mpi.f90</code> with the above in it. In order to run the program we must first compile it with the following command (make sure you have the openmpi module loaded first):</p>
 <div class="highlight"><pre><span></span>mpif90<span class="w"> </span>hello_world_mpi.f90<span class="w"> </span>-o<span class="w"> </span>hello_world_mpi
 </pre></div>
