@@ -13200,12 +13200,41 @@ jupyter-user:<span class="nv">$which</span><span class="w"> </span>mpif90
 <h2 id="Unloading-modules">Unloading modules<a class="anchor-link" href="#Unloading-modules">&#182;</a></h2><p>In order to remove a module we can issue the command:</p>
 <div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>mpi/openmpi-x86_64
 </pre></div>
-<p>Try this now and inspect the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$PATH</code> environment variable with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">echo</code> command again. We can see the path containg the openMPI binaries has been removed.</p>
-<p>If we wished to remove all loaded modules we could issue the command:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-unload%20"><i class="fa fa-pencil-square-o"></i> unload
+</h3>
+    <p>Try unloading the mpi module now and inspect the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$PATH</code> environment variable with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">echo</code> command again. How has it changed? What is the outcome of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">which mpif90</code> now?</p>
+<p><a href="">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Purge">Purge<a class="anchor-link" href="#Purge">&#182;</a></h2><p>If we wished to remove all loaded modules we could issue the command:</p>
 <div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$module</span><span class="w"> </span>purge
 </pre></div>
-<p>This is useful if there are lots of dependencies for a particular piece of software also stored in modules (which is typically the case on Nimbus). This way you don't have to type every module out in an <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module unload</code> statement before loading a new piece of software, just purge them all and do a fresh <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load</code> on the new software.</p>
+<p>This is useful if there are lots of dependencies for a particular piece of software also stored in modules (which is typically the case on Nimbus.. This way you don't have to type every module out in an <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module unload</code> statement before loading a new piece of software, just purge them all and do a fresh <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load</code> on the new software.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-purge%20"><i class="fa fa-pencil-square-o"></i> purge
+</h3>
+    <p>Try loading several of the available modules, and purge them. Confirm they are all removed by listing the currently loaded modules.</p>
+</div>
 </div>
 </div>
 </div>
