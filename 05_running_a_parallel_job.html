@@ -13225,17 +13225,23 @@ mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is possible to have fine grained control over where your MPI processes are placed (see man sbatch, or <a href="https://slurm.schedmd.com/sbatch.html">https://slurm.schedmd.com/sbatch.html</a>) for more information.</p>
+<p>It is possible to have fine grained control over where your MPI processes are placed (see <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man sbatch</code>, or <a href="https://slurm.schedmd.com/sbatch.html">https://slurm.schedmd.com/sbatch.html</a>) for more information.</p>
 <p>It is also possible to simply ask for a certain number of nodes:</p>
-<p>```bash</p>
-<h1 id="SBATCH---nodes">SBATCH --nodes<a class="anchor-link" href="#SBATCH---nodes">&#182;</a></h1>
+<div class="highlight"><pre><span></span><span class="c1">#SBATCH --nodes=</span>
+</pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Key-Points">Key Points<a class="anchor-link" href="#Key-Points">&#182;</a></h2><h2 id="--Using-the---ntasks-and---ntasks-per-node-directives-you-can-tell-slurm-the-compute-resources-you-wish-to-use.-">- Using the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks-per-node</code> directives you can tell slurm the compute resources you wish to use. <a class="anchor-link" href="#--Using-the---ntasks-and---ntasks-per-node-directives-you-can-tell-slurm-the-compute-resources-you-wish-to-use.-">&#182;</a></h2>
+<h2 id="Key-Points">Key Points<a class="anchor-link" href="#Key-Points">&#182;</a></h2><ul>
+<li>Using the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks-per-node</code> directives you can tell slurm the compute resources you wish to use. </li>
+<li>You can also simply specify the number of nodes with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">#SBATCH --nodes=</code></li>
+<li>For more information on placing processes and finer control see <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man sbatch</code></li>
+</ul>
+
 </div>
 </div>
 </div>
