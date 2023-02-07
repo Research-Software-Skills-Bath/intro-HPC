@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>05_running_a_parallel_job</title>
+<title>05_running_a_parallel_job-soln</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,160 +13093,35 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Parallel-Jobs">Parallel Jobs<a class="anchor-link" href="#Parallel-Jobs">&#182;</a></h1><h2 id="Overview:">Overview:<a class="anchor-link" href="#Overview:">&#182;</a></h2><ul>
-<li><strong>Teaching:</strong> 10 min</li>
-<li><strong>Exercises:</strong> 10 min</li>
-</ul>
-<p><strong>Questions</strong></p>
-<ul>
-<li>How do I run a job on multiple compute nodes?</li>
-<li>How do I check the restrictions on the partitions?</li>
-</ul>
-<p><strong>Objectives</strong></p>
-<ul>
-<li>Compile and run a job on several nodes.</li>
-<li>Check what limits are on different partitions.</li>
-</ul>
-
+<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Running-a-parallel-job">Running a parallel job<a class="anchor-link" href="#Running-a-parallel-job">&#182;</a></h2><p>So far we have run jobs on single nodes. but a we have already seen, the power of HPC systems comes from parallelism, i.e. having lots of processors/disks etc. connected together rather than having more powerful components than your laptop or workstation. Often, when running research programs on HPC you will need to run a program that has been built to use the MPI (Message Passing Interface) parallel library. The MPI library allows programs to exploit multiple processing cores in parallel to allow researchers to model or simulate faster on larger problem sizes. The details of how MPI work are not important for this course or even to use programs that have been built using MPI; however, MPI programs typically have to be launched in job submission scripts in a different way to serial programs and users of parallel programs on HPC systems need to know how to do this. Specifically, launching parallel MPI programs typically requires four things:</p>
-<ul>
-<li>A special parallel launch program such as mpirun, mpiexec, srun or aprun.</li>
-<li>A specification of how many processes to use in parallel. For example, our parallel program may use 256 processes in parallel.</li>
-<li>A specification of how many parallel processes to use per compute node. For example, if our compute nodes each have 32 cores we often want to specify 32 parallel processes per node.</li>
-<li>The command and arguments for our parallel program.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Hello-world">Hello world<a class="anchor-link" href="#Hello-world">&#182;</a></h3><p>Below is a simple parallel implementation of the hello world program written in fortran.</p>
-
-<pre><code style="">Fortran90
-PROGRAM hello_world_mpi
-include 'mpif.h'
-
-integer process_Rank, size_Of_Cluster, ierror, tag ,status,resultlen
-
-character*(MPI_MAX_PROCESSOR_NAME) name
-
-
-call MPI_INIT(ierror)
-call MPI_COMM_SIZE(MPI_COMM_WORLD, size_Of_Cluster, ierror)
-call MPI_COMM_RANK(MPI_COMM_WORLD, process_Rank, ierror)
-call MPI_GET_PROCESSOR_NAME(name, resultlen, ierror)
-
-print *, 'Hello World from process: ',TRIM(name), process_Rank, 'of ', size_Of_Cluster
-
-call MPI_FINALIZE(ierror)
-END PROGRAM</code></pre>
-<p>Create a new file named <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">hello_world_mpi.f90</code> with the above in it. In order to run the program we must first compile it with the following command (make sure you have the openmpi module loaded first):</p>
-<div class="highlight"><pre><span></span>mpif90<span class="w"> </span>hello_world_mpi.f90<span class="w"> </span>-o<span class="w"> </span>hello_world_mpi
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-submit-the-parallel-job%20"><i class="fa fa-eye"></i> submit the parallel job
+</h3>
+    <p>The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sortJob</code> partition hs a maximum node limit of 2 nodes. We can see this with the following command:</p>
+<div class="highlight"><pre><span></span>scontrol<span class="w"> </span>show<span class="w"> </span>partition<span class="w"> </span>shortJob
 </pre></div>
-<p>When you have issued this command you should have an executable in your directory called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">hello_world_mpi</code>. We will now run it on our cluster.</p>
-
+</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Running-in-Parallel">Running in Parallel<a class="anchor-link" href="#Running-in-Parallel">&#182;</a></h2><p>In order to run the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">hello_world_mpi</code> program in parallel we will need to write a run script.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-configuring-parallel-jobs%20"><i class="fa fa-eye"></i> configuring parallel jobs
+</h3>
+    <div class="highlight"><pre><span></span><span class="c1">#SBATCH --ntasks=48</span>
+<span class="c1">#SBATCH --ntasks-per-node=16</span>
 
-<span class="c1">#SBATCH --account=prj0_phase1</span>
-<span class="c1">#SBATCH --job-name=myjob</span>
-<span class="c1">#SBATCH --partition=shortJob</span>
-<span class="c1">#SBATCH --qos=shortJob</span>
-<span class="c1">#SBATCH --time=0-00:15:00</span>
-<span class="c1">#SBATCH --output=%x.%j.o</span>
-<span class="c1">#SBATCH --error=%x.%j.e</span>
-<span class="c1">#SBATCH --ntasks=4</span>
-<span class="c1">#SBATCH --ntasks-per-node=1</span>
-
-module<span class="w"> </span>load<span class="w"> </span>mpi/openmpi-x86_64
-mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>hello_world_mpi
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">48</span><span class="w"> </span>hello_world_mpi
 </pre></div>
-<p>We can see there have been some new additions:</p>
-<ul>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks=</code>: this tells slurm the <strong>total number of processes</strong> we would like for the job.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks-per-node=</code>: this tells slurm the number of processes to place on each node.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">module load mpi/openmpi-x86_64</code>: in order to run the job using MPI we need to have the MPI module loaded.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mpirun -np 4 hello_world_mpi</code>: this actually runs the program. mpirun is the program that executes the program in parallel. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-np 4</code> tells mpirun we want 4 processes, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">hello_world_mpi</code> is the name of our program. </li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-submit-the-parallel-job%20"><i class="fa fa-pencil-square-o"></i> submit the parallel job
-</h3>
-    <p>Compile the parallel job using the instructions above and submit it with the above run script. What happens? Can you figure out why? (Hint: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">scontrol</code> can also be used to give you information about partitions)</p>
-<p><a href="./05_running_a_parallel_job-soln.html#-submit-the-parallel-job%20">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-submit-the-parallel-job-to-an-appropriate-partition%20"><i class="fa fa-pencil-square-o"></i> submit the parallel job to an appropriate partition
-</h3>
-    <p>Using the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">scontrol</code> command check the node limit on the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">bigJob</code> partition and submit a job with the maximum number of nodes.</p>
-<p>Check the output to see where each MPI process is running.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-configuring-parallel-jobs%20"><i class="fa fa-pencil-square-o"></i> configuring parallel jobs
-</h3>
-    <p>On our test cluster we have 4 nodes, each with 1 CPU. Typically on HPC systems each node will have multiple CPUS.</p>
-<p>What slurm directives and mpirun argument would you use to run a job using all processes on three nodes on a partition with 16 CPU nodes?</p>
-<p><a href="./05_running_a_parallel_job-soln.html#-configuring-parallel-jobs%20">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It is possible to have fine grained control over where your MPI processes are placed (see man sbatch, or <a href="https://slurm.schedmd.com/sbatch.html">https://slurm.schedmd.com/sbatch.html</a>) for more information.</p>
-<p>It is also possible to simply ask for a certain number of nodes:</p>
-<p>```bash</p>
-<h1 id="SBATCH---nodes">SBATCH --nodes<a class="anchor-link" href="#SBATCH---nodes">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Key-Points">Key Points<a class="anchor-link" href="#Key-Points">&#182;</a></h2><h2 id="--Using-the---ntasks-and---ntasks-per-node-directives-you-can-tell-slurm-the-compute-resources-you-wish-to-use.-">- Using the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--ntasks-per-node</code> directives you can tell slurm the compute resources you wish to use. <a class="anchor-link" href="#--Using-the---ntasks-and---ntasks-per-node-directives-you-can-tell-slurm-the-compute-resources-you-wish-to-use.-">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-bar w3-blue-grey">
-<a href="./04_Modules.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
-<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<p>We have 16 processes on each of three nodes, giving us 48 processes in total.</p>
 </div>
 </div>
 </div>
