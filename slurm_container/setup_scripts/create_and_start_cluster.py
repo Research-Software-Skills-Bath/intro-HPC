@@ -93,5 +93,4 @@ if __name__ == '__main__':
 
     subprocess.run("cp connect_cluster /usr/local/bin/connect_cluster ", shell=True)
     subprocess.run("chmod 755  /usr/local/bin/connect_cluster", shell=True)
-    subprocess.run("ls -d /jupyter/jupyter-* | while read I; do usermod -aG docker $I; done", shell=True)
 
