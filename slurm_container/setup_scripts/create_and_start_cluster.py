@@ -21,9 +21,10 @@ def parse_command_line_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("-b","--build",action='store_true',help="Whether to build the slurm-cluster image or not")
     parser.add_argument("-c","--cache",action='store_true',help="Whether to use the build cache")
+    parser.add_argument("-d","--down",action='store_true',help="Run docker compose down to take the cluster down")
     parser.add_argument("-r","--register",action='store_true',help="Whether to register the slurm-cluster or not")
     parser.add_argument("-n","--name",default="HPCcluster",help="If register==True the name to give the cluster")
-    parser.add_argument("-u","--up",action='store_false',help="If up==True run docker compose up to bring the cluster up")
+    parser.add_argument("-u","--up",action='store_true',help="Run docker compose up to bring the cluster up")
     args = parser.parse_args()
     return args
 
@@ -67,6 +68,16 @@ if __name__ == '__main__':
             print("Error starting slurm cluster {}".format(err))
             exit(1)
 
+    if args.down:
+        try:
+            os.environ['COMPOSE_PROJECT_NAME'] = "slurm-docker-cluster"
+            docker = DockerClient(compose_files=["slurm-docker-cluster/docker-compose.yml"])
+            docker.compose.down(volumes=True)
+            print("compute down")
+        except python_on_whales.exceptions.DockerException as err:
+            print("Error stopping slurm cluster {}".format(err))
+            exit(1)
+
     if args.register:
         slurmdbd_up = False
         while not slurmdbd_up:
@@ -93,4 +104,5 @@ if __name__ == '__main__':
 
     subprocess.run("cp connect_cluster /usr/local/bin/connect_cluster ", shell=True)
     subprocess.run("chmod 755  /usr/local/bin/connect_cluster", shell=True)
+    subprocess.run("ls -d /jupyter/jupyter-* | while read I; do usermod -aG docker $I; done", shell=True)
 
